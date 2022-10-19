@@ -11,11 +11,11 @@ blast_radius := 7
 
 # weights assigned for each operation on each resource-type
 weights := {
-    "aws_autoscaling_group": {"delete": 0, "create": 1, "modify": 1},
-    "aws_instance": {"delete": 0, "create": 1, "modify": 1},
-    "aws_s3_bucket": {"delete": 0, "create": 1, "modify": 1},
-    "aws_eip": {"delete": 0, "create": 1, "modify": 1},
-    "aws_security_group": {"delete": 0, "create": 1, "modify": 1}
+    "aws_autoscaling_group": {"delete": 1, "create": 1, "modify": 1},
+    "aws_instance": {"delete": 1, "create": 1, "modify": 1},
+    "aws_s3_bucket": {"delete": 1, "create": 1, "modify": 1},
+    "aws_eip": {"delete": 1, "create": 1, "modify": 1},
+    "aws_security_group": {"delete": 1, "create": 1, "modify": 1}
 }
 
 # Consider exactly these resource types in calculations

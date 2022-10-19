@@ -2,14 +2,13 @@ provider "aws" {
     region = "us-west-1"
 }
 
-resource "aws_iam_role" "ec2_s3_access_role" {
-  name               = "s3-role"
-  assume_role_policy = "${file("assumerolepolicy.json")}"
-}
+#resource "aws_iam_role" "ec2_s3_access_role" {
+#  name               = "s3-role"
+#  assume_role_policy = "${file("assumerolepolicy.json")}"
+#}
 
 resource "aws_instance" "web" {
  instance_type = "t2.micro"
- count = 10
  ami = "ami-09b4b74c"
 }
 #}
