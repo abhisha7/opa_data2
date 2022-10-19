@@ -19,7 +19,7 @@ weights := {
 }
 
 # Consider exactly these resource types in calculations
-resource_types := {"aws_autoscaling_group", "aws_instance", "aws_iam", "aws_launch_configuration", "aws_iam_role", "aws_security_group", "aws_eip"}
+resource_types := {"aws_autoscaling_group", "aws_instance", "aws_iam", "aws_launch_configuration", "aws_iam_role", "aws_security_group", "aws_eip", "aws_s3_bucket"}
 #########
 # Policy
 #########
