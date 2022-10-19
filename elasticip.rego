@@ -11,7 +11,7 @@ blast_radius := 1
 
 # weights assigned for each operation on each resource-type
 weights := {
-    "aws_eip": {"delete": 10, "create": 1, "modify": 1}
+    "aws_eip": {"delete": 1, "create": 1, "modify": 1}
 }
 
 # Consider exactly these resource types in calculations
