@@ -9,7 +9,7 @@ resource "aws_iam_role" "ec2_s3_access_role" {
 
 resource "aws_instance" "web" {
  instance_type = "t2.micro"
-# count = 10
+ count = 10
  ami = "ami-09b4b74c"
 }
 #}
@@ -58,10 +58,10 @@ resource "aws_s3_bucket" "demos3" {
     acl = "private"   
 }
 
-resource "aws_eip" "lb" {
-  instance = aws_instance.web.id
-  vpc      = true
-}
+#resource "aws_eip" "lb" {
+#  instance = aws_instance.web.id
+#  vpc      = true
+#}
 
 resource "aws_security_group" "demo-sg" {
   name = "sec-grp"
