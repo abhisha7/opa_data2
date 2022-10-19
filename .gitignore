@@ -1,0 +1,4 @@
+.terraform/
+.aws/
+.terraform.lock.hcl
+.terraform.d/

@@ -64,7 +64,7 @@ resource "aws_eip" "lb" {
 }
 
 resource "aws_security_group" "demo-sg" {
-  name = sec-grp
+  name = "sec-grp"
   description = "Allow HTTP and SSH traffic via Terraform"
 
   ingress {
