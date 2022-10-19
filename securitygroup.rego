@@ -7,20 +7,15 @@ import input as tfplan
 ########################
 
 # acceptable score for automated authorization
-blast_radius := 50
+blast_radius := 1
 
 # weights assigned for each operation on each resource-type
 weights := {
- #   "aws_autoscaling_group": {"delete": 100, "create": 10, "modify": 1},
- #   "aws_instance": {"delete": 10, "create": 1, "modify": 1}
- #   "aws_iam_role": {"delete": 10, "create": 1, "modify": 1}
-    "aws_s3_bucket": {"delete": 10, "create": 1, "modify": 1}
+    "aws_security_group": {"delete": 10, "create": 1, "modify": 1}
 }
 
 # Consider exactly these resource types in calculations
-#resource_types := {"aws_autoscaling_group", "aws_instance", "aws_iam", "aws_launch_configuration", "aws_iam_role"}
-#resource_types := {"aws_instance"}
-resource_types := {"aws_s3_bucket"}
+resource_types := {"aws_security_group"}
 #########
 # Policy
 #########
