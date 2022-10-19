@@ -18,11 +18,11 @@ autoscaling="autoscaling:${autoscaling}"
 under_limit=$(./opa eval --format pretty --data terraform.rego --input tfplan.json "data.terraform.analysis.authz")
 
 declare -A score_arr
-score_arr["autoscaling"]="30"
-score_arr["s3"]="10"
-score_arr["ec2"]="10"
-score_arr["eip"]="10"
-score_arr["sg"]="20"
+score_arr=( "autoscaling:30"
+            "s3:10"
+            "ec2:10"
+            "eip:10"
+            "sg:20" )
 
 
 if [[ ${under_limit} == 'true' ]]
@@ -35,7 +35,22 @@ then
         for resource in "${all_resources_arr[@]}"
         do
           item=$(echo $resource | awk -F":" '{print $1}')
+          score=$(echo $resource | awk -F":" '{print $2}')
           echo $item
+          present=$(echo ${score_arr[@]} | grep -o ${item})
+          if [ ! -z ${present} ]
+          then
+            value=$(echo ${score_arr[@]} | sed 's/ /\n/g' | grep -i ec2 | awk -F":" '{print $2}')
+            if [ $item == $present ]
+            then
+                if [ $score > 0 ]
+                then
+                    final_score=${final_score}+${value}
+                fi
+            fi
+          fi      
         done  
     fi
 fi    
+
+echo $final_score
