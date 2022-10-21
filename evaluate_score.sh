@@ -44,7 +44,7 @@ then
 fi   
 
 function cleanup_terraform () {
-    all_terraform_files=(.terraform .terraform.d .terraform.lock.hcl)
+    all_terraform_files=(.terraform .terraform.d .terraform.lock.hcl tfplan.binary tfplan.json)
     for fileORdir in "${all_terraform_files[@]}"
     do
         if [ -d $fileORdir ] || [ -f $fileORdir ];then rm -rf $fileORdir; fi
