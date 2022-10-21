@@ -36,9 +36,11 @@ then
             if [ $score > 0 ]
             then
                 final_score=$((final_score + value))
-                echo $final_score
+                
             fi
           fi      
         done  
     fi
 fi    
+
+echo $final_score
