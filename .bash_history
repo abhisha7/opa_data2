@@ -246,3 +246,35 @@ git pull origin master
 git add .
 git commit -m "changes"
 git push origin master
+clear
+ls
+git remote -v
+git pull
+git pull origin master
+ls
+cat terraform.rego
+clear
+ls
+./opa eval --format pretty --data terraform.rego --input tfplan.json "data.terraform.analysis.score"
+nano main.tf 
+terraform plan --out tfplan.binary
+terraform show -json tfplan.binary > tfplan.json
+./opa eval --format pretty --data terraform.rego --input tfplan.json "data.terraform.analysis.score"
+./opa eval --format pretty --data terraform.rego --input tfplan.json "data.terraform.analysis.authz"
+nano terraform.rego 
+./opa eval --format pretty --data terraform.rego --input tfplan.json "data.terraform.analysis.authz"
+nano main.tf 
+terraform plan --out tfplan.binary
+nano main.tf 
+terraform plan --out tfplan.binary
+terraform show -json tfplan.binary > tfplan.json
+./opa eval --format pretty --data terraform.rego --input tfplan.json "data.terraform.analysis.authz"
+./opa eval --format pretty --data terraform.rego --input tfplan.json "data.terraform.analysis.score"
+nano main.tf 
+nano terraform.rego 
+git add .
+git commit -m "changes"
+git push origin master
+cat http://169.254.169.254/latest/meta-data/
+curl http://169.254.169.254/latest/meta-data/
+curl http://169.254.169.254/latest/meta-data/public-ipv4
