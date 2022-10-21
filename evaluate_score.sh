@@ -30,7 +30,7 @@ then
     if [[ ${total} > 1 ]]
     then
         all_resources_arr=($eip $sg $ec2 $s3 $autoscaling)
-        echo ${all_resources_arr[*]}
+        #echo ${all_resources_arr[*]}
         final_score=0
         for resource in "${all_resources_arr[@]}"
         do
@@ -46,6 +46,7 @@ then
                 if [ $score > 0 ]
                 then
                     final_score=${final_score}+${value}
+                    echo $final_score
                 fi
             fi
           fi      
