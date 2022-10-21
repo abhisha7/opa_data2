@@ -36,7 +36,7 @@ then
             value=$(for i in "${!score_arr[@]}"; do echo "$i":"${score_arr[$i]}"; done | grep -i $item | awk -F":" '{print $2}')
             if [ $score > 0 ]
             then
-                final_score=${final_score}+${value}
+                final_score=$((final_score + value))
                 echo $final_score
             fi
           fi      
