@@ -29,7 +29,6 @@ then
         do
           item=$(echo $resource | awk -F":" '{print $1}')
           score=$(echo $resource | awk -F":" '{print $2}')
-          echo $item
           present=$(echo "${!score_arr[@]}" | sed 's/ /\n/g' | grep -o ${item})
           if [ ! -z ${present} ]
           then
