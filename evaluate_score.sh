@@ -41,6 +41,15 @@ then
           fi      
         done  
     fi
-fi    
+fi   
+
+function cleanup_terraform () {
+    all_terraform_files=(.terraform .terraform.d .terraform.lock.hcl)
+    for fileORdir in "${all_terraform_files[@]}"
+    do
+        if [ -d $fileORdir ] || [ -f $fileORdir ];then rm -rf $fileORdir; fi
+    done    
+}
 
 echo $final_score
+cleanup_terraform
