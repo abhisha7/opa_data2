@@ -60,7 +60,7 @@ resource "aws_s3_bucket" "demos3" {
 resource "aws_eip" "lb" {
   instance = aws_instance.web.id
   vpc      = true
-}
+# }
 
 resource "aws_security_group" "demo-sg" {
   name = "sec-grp"
