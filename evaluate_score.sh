@@ -8,28 +8,38 @@ total=$(./opa eval --format pretty --data terraform.rego --input tfplan.json "da
 echo $total
 eip=$(./opa eval --format pretty --data elasticip.rego --input tfplan.json "data.terraform.analysis.score")
 echo $eip
-eip="eip:${eip}"
 sg=$(./opa eval --format pretty --data securitygroup.rego --input tfplan.json "data.terraform.analysis.score")
 echo $sg
-sg="sg:${sg}"
 ec2=$(./opa eval --format pretty --data ec2.rego --input tfplan.json "data.terraform.analysis.score")
 echo $ec2
-ec2="ec2:${ec2}"
 s3=$(./opa eval --format pretty --data s3.rego --input tfplan.json "data.terraform.analysis.score")
 echo $s3
-s3="s3:${s3}"
 autoscaling=$(./opa eval --format pretty --data autoscaling.rego --input tfplan.json "data.terraform.analysis.score")
 echo $autoscaling
-autoscaling="autoscaling:${autoscaling}"
 under_limit=$(./opa eval --format pretty --data terraform.rego --input tfplan.json "data.terraform.analysis.authz")
 echo $under_limit
+eip="eip:${eip}"
+sg="sg:${sg}"
+ec2="ec2:${ec2}"
+s3="s3:${s3}"
+autoscaling="autoscaling:${autoscaling}"
+res_over_zero=($eip $sg $ec2 $s3 $autoscaling)
+all_resources_arr=()
+for res in "${res_over_zero[@]}"
+do
+  res_score=$(echo $res | awk -F":" '{print $2}')
+  if [ $res_score > 0 ]
+  then
+    all_resources_arr+=($res)
+  fi
+done
+echo ${all_resources_arr[@]}
 declare -A score_arr=([autoscaling]=30 [s3]=10 [ec2]=10 [eip]=10 [sg]=20)
 
 if [[ ${under_limit} == 'true' ]]
 then
     if [[ ${total} > 1 ]]
     then
-        all_resources_arr=($eip $sg $ec2 $s3 $autoscaling)
         final_score=0
         for resource in "${all_resources_arr[@]}"
         do
