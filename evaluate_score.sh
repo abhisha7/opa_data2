@@ -69,5 +69,11 @@ function cleanup_terraform () {
     done    
 }
 
-echo $final_score
+if [ $final_score > 30 ]
+then
+    echo "Congrats! you passed the test"
+else
+    echo "Sorry! you failed the test"
+fi    
+#echo $final_score
 cleanup_terraform
