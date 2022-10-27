@@ -4,7 +4,7 @@ terraform init
 terraform validate
 if [ $? -gt '0' ] 
 then
-  echo "[ERROR]: There is a syntax issue in your .tf file"
+  echo "[ERROR]: There is a syntax issue in your .tf file, please fix it and try again!"
   exit 1
 fi  
 terraform plan --out tfplan.binary
