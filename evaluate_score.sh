@@ -69,7 +69,7 @@ function cleanup_terraform () {
     done    
 }
 
-if [ "${final_score}" > "30" ]
+if [ "${final_score}" -gt "30" ]
 then
     echo "Congrats! you passed the test, your score is '${final_score}'"
 else
