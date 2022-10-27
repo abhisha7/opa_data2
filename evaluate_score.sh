@@ -1,6 +1,12 @@
 #!/bin/bash
 
 terraform init
+terraform validate
+if [ $? -gt '0' ] 
+then
+  echo "[ERROR]: There is a syntax issue in your .tf file"
+  exit 1
+fi  
 terraform plan --out tfplan.binary
 terraform show -json tfplan.binary > tfplan.json
 
