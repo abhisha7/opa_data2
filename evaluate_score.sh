@@ -1,7 +1,7 @@
 #!/bin/bash
 
 terraform init
-terraform validate
+#terraform validate
 if [ $? -gt '0' ] 
 then
   echo "[ERROR]: There is a syntax issue in your .tf file, please fix it and try again!"
