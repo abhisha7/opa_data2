@@ -7,11 +7,11 @@ provider "aws" {
 #  assume_role_policy = "${file("assumerolepolicy.json")}"
 #}
 
-# resource "aws_instance" "web" {
-#  instance_type = "t2.micro"
-#  ami = "ami-09b4b74c"
-# # }
+resource "aws_instance" "web" {
+ instance_type = "t2.micro"
+ ami = "ami-09b4b74c"
 # }
+}
 # resource "aws_autoscaling_group" "my_asg" {
 #   availability_zones        = ["us-west-1a"]
 #   name                      = "my_asg"
@@ -57,10 +57,10 @@ resource "aws_s3_bucket" "demos3" {
     acl = "private"   
 }
 
-# resource "aws_eip" "lb" {
-#   instance = aws_instance.web.id
-#   vpc      = true
-# }
+resource "aws_eip" "lb" {
+  instance = aws_instance.web.id
+  vpc      = true
+}
 
 resource "aws_security_group" "demo-sg" {
   name = "sec-grp"
