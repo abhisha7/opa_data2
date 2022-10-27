@@ -11,7 +11,7 @@ blast_radius := 2
 
 # weights assigned for each operation on each resource-type
 weights := {
-    "aws_autoscaling_group": {"delete": 100, "create": 1, "modify": 1}
+    "aws_autoscaling_group": {"create": 1, "modify": 1}
 }
 
 # Consider exactly these resource types in calculations
@@ -34,7 +34,6 @@ score := s {
     all := [ x |
             some resource_type
             crud := weights[resource_type];
-            del := crud["delete"] * num_deletes[resource_type];
             new := crud["create"] * num_creates[resource_type];
             mod := crud["modify"] * num_modifies[resource_type];
             x := del + new + mod
@@ -73,13 +72,13 @@ num_creates[resource_type] := num {
 
 
 # number of deletions of resources of a given type
-num_deletes[resource_type] := num {
-    some resource_type
-    resource_types[resource_type]
-    all := resources[resource_type]
-    deletions := [res |  res:= all[_]; res.change.actions[_] == "delete"]
-    num := count(deletions)
-}
+# num_deletes[resource_type] := num {
+#     some resource_type
+#     resource_types[resource_type]
+#     all := resources[resource_type]
+#     deletions := [res |  res:= all[_]; res.change.actions[_] == "delete"]
+#     num := count(deletions)
+# }
 
 # number of modifications to resources of a given type
 num_modifies[resource_type] := num {
