@@ -28,9 +28,11 @@ all_resources_arr=()
 for res in "${res_over_zero[@]}"
 do
   res_score=$(echo $res | awk -F":" '{print $2}')
+  echo $res_score
   if [ $res_score > 0 ]
   then
     all_resources_arr+=($res)
+    echo ${all_resources_arr[@]}    
   fi
 done
 echo ${all_resources_arr[@]}
